@@ -35,7 +35,7 @@ struct Auction {
 }
 ```
 <p align="center">
-  <img src="./code_run.png" width="80%" title="cs_project">
+  <img src="./code.png" width="80%" title="cs_project">
 </p>
 
 
