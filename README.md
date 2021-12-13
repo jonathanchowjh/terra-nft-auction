@@ -41,9 +41,9 @@ struct Auction {
 
 ## cw1155 auction implementation and terrad calls
 ```
-cargo wasm
-cargo test
-cargo run-script optimize
+cargo wasm                  // RUN CONTRACT
+cargo test                  // RUN UNIT TEST
+cargo run-script optimize   // OPTIMISE CONTRACT
 
 // Deploy Contract
 terrad tx wasm store artifacts/nft_auction.wasm --from test1 --chain-id=localterra --gas=auto --fees=100000uluna --broadcast-mode=block
