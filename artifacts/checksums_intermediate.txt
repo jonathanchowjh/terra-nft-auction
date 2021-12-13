@@ -1,0 +1,1 @@
+bcf58fc9493c41b86ee8080d6038cfc98399a9246c9c20f2a0ab0e7cf09baa36  ./target/wasm32-unknown-unknown/release/nft_auction.wasm
