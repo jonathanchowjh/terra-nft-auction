@@ -25,20 +25,6 @@ QueryMsg::GetCount {} => to_binary(&query_count(deps)?),
 ```
 
 ## Auction Architecture
-- initializeContract(nftAddress)
-- createAuction(tokenId, price, seller, Expiration)
-  - INIT tokenIdToAuction
-  - SET Auction struct -> seller, price, highestBidder to seller
-  - SEND nft to contract
-- bid(tokenId)
-  - RECEIVE uluna funds
-  - IF MORETHAN PRICE
-    - SET new price, highestBidder to sender
-    - SEND uluna back to previous highestBidder
-- completeAuction(tokenId)
-  - IF Expiration.expired
-    - SEND nft to highestBidder
-    - SEND price to seller
 ```
 mapping (&str => Auction) public tokenIdToAuction;
 struct Auction {
@@ -48,10 +34,10 @@ struct Auction {
   Expiration biddingClose;
 }
 ```
-
 <p align="center">
   <img src="./code_run.png" width="80%" title="cs_project">
 </p>
+
 
 ## cw1155 auction implementation and terrad calls
 ```
