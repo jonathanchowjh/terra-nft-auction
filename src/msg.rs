@@ -1,7 +1,7 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
-use cosmwasm_std::{to_binary, Binary, CosmosMsg, StdResult, Uint128, WasmMsg, Addr, Coin};
+use cosmwasm_std::{to_binary, Binary, CosmosMsg, StdResult, Uint128, WasmMsg, Coin};
 use cw0::{Expiration};
 
 use crate::state::{Auction};

@@ -7,12 +7,11 @@ use cosmwasm_std::{
 };
 use cw2::set_contract_version;
 use cw0::{Event,Expiration};
-use cw20::{Balance, Cw20Coin, Cw20CoinVerified, Cw20ExecuteMsg, Cw20ReceiveMsg};
 
 use crate::error::ContractError;
 use crate::msg::{
-    CountResponse, BalanceResponse, IsApprovedForAllResponse, ExecuteMsg, InstantiateMsg, QueryMsg, TokenId,
-    Cw1155BatchReceiveMsg, Cw1155ReceiveMsg, AuctionResponse
+    CountResponse, BalanceResponse, IsApprovedForAllResponse, ExecuteMsg, InstantiateMsg,
+    QueryMsg, TokenId, Cw1155ReceiveMsg, AuctionResponse
 };
 use crate::state::{State, STATE, APPROVES, BALANCES, MINTER, TOKENS, Auction, AUCTIONS};
 use crate::event::{TransferEvent,ApproveAllEvent};
@@ -94,7 +93,7 @@ pub fn try_reset(deps: DepsMut, info: MessageInfo, count: i32) -> Result<Respons
 /// Create auction
 pub fn execute_create_auction(
     deps: DepsMut,
-    env: Env,
+    _env: Env,
     info: MessageInfo,
     token_id: TokenId,
     amount: Uint128,
@@ -131,7 +130,7 @@ pub fn execute_create_auction(
                 &new_auction
             )?;
         }
-        Some(auction_val) => { return Err(ContractError::InvalidAuction {}); }
+        Some(_auction_val) => { return Err(ContractError::InvalidAuction {}); }
     }
     Ok(Response::new().add_attribute("method", "execute_create_auction"))
 }
@@ -192,7 +191,7 @@ pub fn execute_bid(
 /// Send NFT to highest bidder
 /// Send Bid amount to user
 pub fn execute_auction_close(
-    mut deps: DepsMut,
+    deps: DepsMut,
     env: Env,
     info: MessageInfo,
     token_id: String,
@@ -295,7 +294,7 @@ fn guard_can_approve(
 
 pub fn execute_mint(
     mut deps: DepsMut,
-    env: Env,
+    _env: Env,
     info: MessageInfo,
     to: String,
     token_id: TokenId,
@@ -372,12 +371,11 @@ pub fn execute_send_from(
             .into_cosmos_msg(to)?,
         )]
     }
-
     Ok(rsp)
 }
 
 pub fn execute_approve_all(
-    mut deps: DepsMut,
+    deps: DepsMut,
     env: Env,
     info: MessageInfo,
     operator: String,
@@ -405,8 +403,8 @@ pub fn execute_approve_all(
 }
 
 pub fn execute_revoke_all(
-    mut deps: DepsMut,
-    env: Env,
+    deps: DepsMut,
+    _env: Env,
     info: MessageInfo,
     operator: String
 ) -> Result<Response, ContractError> {
